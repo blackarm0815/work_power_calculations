@@ -70,11 +70,11 @@ var findRacks = function (rackSysIdArray) {
     // @ts-ignore
     var grHardware = new GlideRecord('alm_hardware');
     grHardware.addQuery('u_rack', 'IN', Object.keys(rackSysIdMetaSysId));
-    grHardware.addNotNullQuery('ci');
     grHardware.query();
     while (grHardware.next()) {
         var tempCiSysId = checkString(grHardware.ci.getValue());
         var tempRackSysId = checkString(grHardware.u_rack.getValue());
+        // collect
         if (tempCiSysId !== null && tempRackSysId !== null) {
             ciSysIdRackSysId[tempCiSysId] = tempRackSysId;
         }

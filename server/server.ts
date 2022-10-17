@@ -99,11 +99,11 @@ const findRacks = (
   // @ts-ignore
   const grHardware = new GlideRecord('alm_hardware');
   grHardware.addQuery('u_rack', 'IN', Object.keys(rackSysIdMetaSysId));
-  grHardware.addNotNullQuery('ci');
   grHardware.query();
   while (grHardware.next()) {
     const tempCiSysId = checkString(grHardware.ci.getValue());
     const tempRackSysId = checkString(grHardware.u_rack.getValue());
+    // collect cis for switch query
     if (tempCiSysId !== null && tempRackSysId !== null) {
       ciSysIdRackSysId[tempCiSysId] = tempRackSysId;
     }
